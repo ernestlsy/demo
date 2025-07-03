@@ -73,8 +73,7 @@ export async function downloadModel(jobId: string) {
     const a = document.createElement('a');
     a.href = url;
 
-    const timestamp = new Date().toISOString().replace(/[-:.]/g, '');
-    a.download = `trained_model_${timestamp}.task`;
+    a.download = `model_${jobId}.task`;
 
     a.click();
     window.URL.revokeObjectURL(url);
