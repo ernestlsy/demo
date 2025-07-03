@@ -1,0 +1,26 @@
+trainer:
+  checkpoint_path: "./trainer/checkpoints/base"  # path to folder containing base model weights (.safetensors)
+  lora_path: "./trainer/checkpoints/lora"  # path to folder containing LoRA config and weights
+  output_path: "./temp/merged"  # should be same as checkpoint_path for converter
+  epoch_path: "./trainer/checkpoints/epochs" # path to folder where epoch checkpoints will be saved
+  learning_rate: 2e-4
+  weight_decay: 0.01
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  num_train_epochs: 3
+  lora_dims: 64  # dimension of the smaller matrices
+  lora_alpha: 128  # scaling factor
+  lora_dropout: 0.1  # dropout of LoRA layers
+
+convert_gemma3_to_tflite:
+  quantize: "dynamic_int4_block32"
+  checkpoint_path: "./temp/merged"
+  output_path: "./temp/tflite"
+  prefill_seq_lens: 2048
+  kv_cache_max_len: 4096
+  mask_as_input: true
+
+bundler:
+  tflite_model_path: "./temp/tflite/gemma3-1b_q4_block32_ekv4096.tflite"
+  tokenizer_path: "./trainer/checkpoints/base/tokenizer.model"
+  output_dir: "./out"
