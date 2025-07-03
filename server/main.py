@@ -21,7 +21,8 @@ def train_model(job_id, dataset_path):
 def start_training():
     current_job_id = job_id
     dataset = request.files['dataset']
-    dataset_path = f"/data/{current_job_id}.csv"
+    file_name = dataset.filename
+    dataset_path = f"/data/{file_name}"
     dataset.save(dataset_path)
 
     is_valid, message = validate_csv(dataset_path)

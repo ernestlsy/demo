@@ -9,15 +9,17 @@ import json
 class Preprocessor:
     def __init__(
         self,
-        tokenizer
+        tokenizer,
+        module_name
     ):
         self.tokenizer = tokenizer
+        self.module_name = module_name
 
     def preprocess(self, example):
         field_names, num_fields = self.extract_names(example)
         json_string = self.extract_fields_to_json(example)
         prompt = (
-            f"Summarize this incident report into these {num_fields} fields: {field_names} "
+            f"Summarize this {self.module_name} into these {num_fields} fields: {field_names} "
             f"Only output the values of the {num_fields} fields, as 1 json object. "
             f"(start) {example['input_text']} (end)"
         )
