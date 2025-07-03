@@ -24,7 +24,7 @@ export async function uploadDataset(file: File, setStatus: (status: Status) => v
       throw Error("Unexpected training status");
     }
   } catch (err) {
-  const error = err as AxiosError<{ error: string }>;  // Adjust the generic type if your error format differs
+  const error = err as AxiosError<{ error: string }>;
 
   console.error('Upload failed:', error.response?.data?.error);
   alert(`Failed to upload dataset: ${error.response?.data?.error ?? 'Unknown error'}`);
