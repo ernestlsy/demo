@@ -78,6 +78,13 @@ def run(dataset_path, job_id):
     print("Running trainer...")
     trainer.train_and_save()
 
+    if os.path.exists(dataset_path)):
+        print(f"Removing used dataset: {dataset_path}")
+        try:
+            os.unlink(dataset_path)
+        except Exception as e:
+            print(f"Failed to delete {dataset_path}: {e}")
+
 
     ## Step 2: Run converter with flags
     print("Running converter...")
@@ -103,10 +110,9 @@ def run(dataset_path, job_id):
     if os.path.exists(outdated_model_path):
         print(f"Removing outdated model: {outdated_model_path}")
         try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
+            os.unlink(outdated_model_path)
         except Exception as e:
-            print(f"Failed to delete {file_path}: {e}")
+            print(f"Failed to delete {outdated_model_path}: {e}")
 
     print("All steps completed.")
     return output_path
