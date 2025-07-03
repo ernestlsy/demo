@@ -78,7 +78,7 @@ def run(dataset_path, job_id):
     print("Running trainer...")
     trainer.train_and_save()
 
-    if os.path.exists(dataset_path)):
+    if os.path.exists(dataset_path):
         print(f"Removing used dataset: {dataset_path}")
         try:
             os.unlink(dataset_path)
