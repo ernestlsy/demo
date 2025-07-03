@@ -5,7 +5,7 @@ import shutil
 from trainer.train import InitialTrainer, DefaultTrainer
 from bundler.bundler import Bundler
 
-def run(dataset_path, output_model_name):
+def run(dataset_path, job_id):
     ## Load config
     with open("config.yaml") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
@@ -93,11 +93,20 @@ def run(dataset_path, output_model_name):
 
     ## Step 3: Run bundler
     print("Init bundler...")
+    output_model_name = f"model_{str(job_id)}"
     bundler = Bundler(**bundler_cfg, model_name=output_model_name)
 
     print("Running bundler...")
     output_path = bundler.create()
 
+    outdated_model_path  = f"{bundler_cfg["output_dir"]}/model_{str(job_id-1)}.task"
+    if os.path.exists(outdated_model_path):
+        print(f"Removing outdated model: {outdated_model_path}")
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}: {e}")
 
     print("All steps completed.")
     return output_path

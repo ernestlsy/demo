@@ -12,7 +12,7 @@ export async function uploadDataset(file: File, setStatus: (status: Status) => v
 
   var id = "";
   try {
-    const res = await axios.post("/train", formData);
+    const res = await axios.post("/train/start", formData);
     const { status, content: jobId } = res.data;
 
     if (status === 'training') {
@@ -63,7 +63,7 @@ export async function pollTrainingStatus(jobId: string, setStatus: (status: Stat
 
 export async function downloadModel(jobId: string) {
   try {
-    const res = await axios.get("/train/download", {
+    const res = await axios.get("/model/download", {
       params: { job_id: jobId },
       responseType: 'blob',
     });
