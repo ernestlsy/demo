@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
+import os
 import threading
 from wrapper import run
 from utils.data_utils import validate_csv, validate_feedback, write_to_csv
@@ -33,6 +34,12 @@ def start_training():
 
     is_valid, message = validate_csv(dataset_path)
     if not is_valid:
+        if os.path.exists(dataset_path):
+            print(f"Removing invalid dataset: {dataset_path}")
+            try:
+                os.unlink(dataset_path)
+            except Exception as e:
+                print(f"Failed to delete {dataset_path}: {e}")
         training_lock.release()
         return jsonify({"error": f"Invalid CSV: {message}"}), 400
     
@@ -52,7 +59,7 @@ def start_training():
 
 @app.route("/train/status", methods=["GET"])
 def check_status():
-    job_id = request.args.get("job_id")
+    job_id = int(request.args.get("job_id"))
     job = training_jobs.get(job_id)
     if not job:
         return jsonify({"error": "Job not found"}), 404
