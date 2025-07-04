@@ -28,7 +28,7 @@ export async function uploadDataset(file: File, moduleName: string, setStatus: (
     const error = err as AxiosError<{ error: string }>;
 
     console.error('Upload failed:', error.response?.data?.error);
-    alert(`Failed to upload dataset: ${error.response?.data?.error ?? 'Unknown error'}`);
+    alert(`Failed to upload dataset:\n${error.response?.data?.error ?? 'Unknown error'}`);
     throw new Error("Upload failed");
   }
 
@@ -57,7 +57,7 @@ export async function pollTrainingStatus(jobId: string, setStatus: (status: Stat
       }
     } catch (err) {
       console.error('Status check failed:', err);
-      alert(`Status check failed: ${err}`);
+      alert(`Status check failed:\n${err}`);
     }
   }, 15000); // Poll every 15 seconds
 }

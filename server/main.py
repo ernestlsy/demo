@@ -8,6 +8,7 @@ app = Flask(__name__)
 CORS(app)
 job_id = 1  # Initialize job_id to 1 at start of server
 training_jobs = {}
+training_lock = threading.Lock() # mutex to ensure 1 job at a time
 
 def train_model(job_id, dataset_path):
     training_jobs[job_id] = {"status": "in_progress", "model_path": None}
@@ -18,6 +19,10 @@ def train_model(job_id, dataset_path):
 @app.route("/train/start", methods=["POST"])
 def start_training():
     global job_id
+
+    if not training_lock.acquire(blocking=False):
+        return jsonify({"error": "Another training job is already running. Please try again later"}), 409
+
     current_job_id = job_id
     dataset = request.files['dataset']
     module_name = request.form.get('moduleName')
@@ -28,9 +33,16 @@ def start_training():
 
     is_valid, message = validate_csv(dataset_path)
     if not is_valid:
+        training_lock.release()
         return jsonify({"error": f"Invalid CSV: {message}"}), 400
     
-    threading.Thread(target=train_model, args=(current_job_id, dataset_path)).start()
+    def train_and_release(job_id, dataset_path):
+        try:
+            train_model(job_id, dataset_path)
+        finally:
+            training_lock.release()  # Always release even if training fails
+
+    threading.Thread(target=train_and_release, args=(current_job_id, dataset_path)).start()
 
     job_id = job_id + 1
     return jsonify({
