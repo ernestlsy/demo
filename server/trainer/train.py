@@ -117,8 +117,9 @@ class DefaultTrainer:
     ):
         self.tokenizer = AutoTokenizer.from_pretrained(checkpoint_path)
         self.model = AutoModelForCausalLM.from_pretrained(checkpoint_path, attn_implementation='eager')
-        self.preprocessor = Preprocessor(self.tokenizer)
         self.dataset_path = dataset_path
+        module_name = os.path.splitext(os.path.basename(dataset_path))[0]
+        self.preprocessor = Preprocessor(self.tokenizer, module_name)
         self.lora_path = lora_path
         self.output_path = output_path
         self.training_args = TrainingArguments(
