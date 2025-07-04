@@ -9,13 +9,15 @@ interface FileUploadProps {
 
 export function FileUpload({ fileName, onUploadFile, onCancel }: FileUploadProps) {
     const [moduleName, setModuleName] = useState("");
-    
+    const [error, setError] = useState(false);
+
     const handleUpload = () => {
         if (moduleName.trim() === "") {
-        alert("Module name cannot be blank.");
+        setError(true);
         return;
         }
 
+        setError(false);
         onUploadFile(moduleName.trim());
     };
     
@@ -40,8 +42,11 @@ export function FileUpload({ fileName, onUploadFile, onCancel }: FileUploadProps
                     className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
                         error ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
                     }`}
-                    placeholder="Enter module name (e.g. incident report)"
+                    placeholder="Enter module name"
                 />
+                {error && (
+                <p className="text-sm text-red-600">Module name cannot be blank.</p>
+                )}
             </div>
 
             <div className="flex gap-3 justify-center">
