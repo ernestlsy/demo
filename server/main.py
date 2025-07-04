@@ -87,7 +87,7 @@ def upload_feedback():
     
 @app.route("/model/download", methods=["GET"])
 def download_model():
-    job_id = request.args.get("job_id")
+    job_id = int(request.args.get("job_id"))
     job = training_jobs.get(job_id)
     if not job or job["status"] != "completed":
         return jsonify({"error": "Model not ready"}), 400
