@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { Status } from './types'
 
-export async function uploadDataset(file: File, setStatus: (status: Status) => void) {
+export async function uploadDataset(file: File, moduleName: string, setStatus: (status: Status) => void) {
   setStatus({
     status: 'uploading',
   });
@@ -9,6 +9,7 @@ export async function uploadDataset(file: File, setStatus: (status: Status) => v
 
   const formData = new FormData();
   formData.append('dataset', file);
+  formData.append('moduleName', moduleName);
 
   var id = "";
   try {

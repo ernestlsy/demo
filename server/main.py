@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import threading
-import time
-import os
 from wrapper import run
 from utils.data_utils import validate_csv, validate_feedback, write_to_csv
 
@@ -19,15 +17,18 @@ def train_model(job_id, dataset_path):
 
 @app.route("/train/start", methods=["POST"])
 def start_training():
+    global job_id
     current_job_id = job_id
     dataset = request.files['dataset']
-    file_name = dataset.filename
-    dataset_path = f"/data/{file_name}"
+    module_name = request.form.get('moduleName')
+    safe_module_name = "".join(c for c in module_name if c.isalnum() or c in ('_', '-', ' ')).strip()
+    dataset_path = f"/data/{safe_module_name}.csv"
+
     dataset.save(dataset_path)
 
     is_valid, message = validate_csv(dataset_path)
     if not is_valid:
-        return jsonify({"error": f"Invalid CSV {message}"}), 400
+        return jsonify({"error": f"Invalid CSV: {message}"}), 400
     
     threading.Thread(target=train_model, args=(current_job_id, dataset_path)).start()
 

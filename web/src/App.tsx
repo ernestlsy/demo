@@ -3,9 +3,6 @@ import { FileSelect } from './components/FileSelect';
 import { FileUpload } from './components/FileUpload';
 import { ModelDownload } from './components/ModelDownload';
 import { Spinner } from './components/Spinner';
-// import { ProcessingStatus } from './components/ProcessingStatus';
-// import { downloadFile } from './utils/download';
-// import { classifyAccount } from './api';
 import { Status } from './types';
 import { uploadDataset, downloadModel } from './api';
 import { FileSpreadsheet, X } from 'lucide-react';
@@ -26,11 +23,11 @@ function App() {
     });
   };
 
-  const handleUploadFile = async () => {
+  const handleUploadFile = async (moduleName: string) => {
     if (selectedFile === null) return;
 
     try {
-      const id = await uploadDataset(selectedFile, setStatus);
+      const id = await uploadDataset(selectedFile, moduleName, setStatus); // status is updated within function
       setJobId(id);
     } catch (error) {
       setStatus({
