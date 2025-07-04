@@ -27,7 +27,7 @@ def start_training():
     dataset = request.files['dataset']
     module_name = request.form.get('moduleName')
     safe_module_name = "".join(c for c in module_name if c.isalnum() or c in ('_', '-', ' ')).strip()
-    dataset_path = f"/data/{safe_module_name}.csv"
+    dataset_path = f"data/{safe_module_name}.csv"
 
     dataset.save(dataset_path)
 

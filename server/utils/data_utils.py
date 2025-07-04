@@ -31,7 +31,7 @@ def validate_feedback(data: dict):
 def write_to_csv(data: dict):
     module_name = data['module']
     del data['module']
-    target_csv = f"/data/{module_name}.csv"
+    target_csv = f"data/{module_name}.csv"
 
     file_exists = os.path.isfile(target_csv)
 
