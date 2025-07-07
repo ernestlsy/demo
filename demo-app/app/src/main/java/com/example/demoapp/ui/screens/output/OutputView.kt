@@ -43,9 +43,9 @@ fun OutputScreen(
                 FieldBox(
                     name = fields.fieldNames[index],
                     value = value,
-                    setValue = { value -> viewModel.setState(fields.editValue(index, value)) },
+                    setValue = { value -> viewModel.updateFields(fields.editValue(index, value)) },
                     clearValue = {
-                        viewModel.setState(fields.editValue(index, ""))
+                        viewModel.updateFields(fields.editValue(index, ""))
                         Log.d("UI", "Clearing for index $index")
                     }
                 )

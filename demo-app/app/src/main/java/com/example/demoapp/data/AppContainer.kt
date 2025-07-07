@@ -3,9 +3,11 @@ package com.example.demoapp.data
 import android.content.Context
 import com.example.modularsummarizer.ModularSummarizer
 import com.example.modularsummarizer.ModularSummarizerInstance
-
 import com.example.demoapp.model.ModelManager
+import com.example.demoapp.network.ApiService
 import java.io.File
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 interface AppContainer {
     val modelManager: ModelManager
@@ -15,6 +17,12 @@ interface AppContainer {
 class DefaultAppContainer(
     val context: Context
 ): AppContainer {
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:5000/") // Use 10.0.2.2 for localhost in Android emulator
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+    val api = retrofit.create(ApiService::class.java)
 
     val model = File(context.getExternalFilesDir(null), "model.task")
     val modelPath = model.absolutePath
@@ -31,7 +39,7 @@ class DefaultAppContainer(
     }
 
     override val mainRepository: MainRepository by lazy {
-        MainRepository(modelManager)
+        MainRepository(modelManager, api)
     }
 
 }

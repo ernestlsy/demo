@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 sealed interface OutputState{
-    data class Editing(val fields: Fields) : OutputState
+    data class Editing(val inputText: String, val fields: Fields) : OutputState
     object Loading : OutputState
     object Empty : OutputState
 }
@@ -31,7 +31,7 @@ class OutputViewModel(
     private val modelState: StateFlow<ModelState> = mainRepository.modelState
 
     // Private mutable state
-    private val _uiState: MutableStateFlow<OutputState> = MutableStateFlow< OutputState>(
+    private val _uiState: MutableStateFlow<OutputState> = MutableStateFlow<OutputState>(
         OutputState.Empty
     )
 
@@ -47,7 +47,7 @@ class OutputViewModel(
         viewModelScope.launch {
             modelState.collect { state ->
                 val newState = when (state) {
-                    is ModelState.Completion -> OutputState.Editing(state.fields)
+                    is ModelState.Completion -> OutputState.Editing(state.inputText, state.fields)
                     is ModelState.Loading -> OutputState.Loading
                     is ModelState.Empty -> OutputState.Empty
                 }
@@ -56,9 +56,9 @@ class OutputViewModel(
         }
     }
 
-    fun setState(fields: Fields) {
+    fun updateFields(fields: Fields) {
         if (uiState.value is OutputState.Editing) {
-            setState(OutputState.Editing(fields))
+            setState(OutputState.Editing((uiState.value as OutputState.Editing).inputText, fields))
         } else {
             Log.d("OutputVM", "Invalid state")
         }
@@ -67,9 +67,16 @@ class OutputViewModel(
     fun submitFields() {
         if (uiState.value is OutputState.Editing) {
             Log.d("OutputVM", "Submitting fields:")
-            val fields: Fields = (uiState.value as OutputState.Editing).fields
+            val output: OutputState.Editing = (uiState.value as OutputState.Editing)
+            val fields: Fields = output.fields
             fields.values.forEachIndexed { index, value ->
                 Log.d("OutputVM", "${fields.fieldNames[index]}: $value")
+            }
+
+            val prefix: Map<String, String> = mapOf("module" to "incident report", "input_text" to output.inputText)
+            val feedback: Map<String, String> = fields.fieldNames.zip(fields.values).toMap()
+            viewModelScope.launch {
+                mainRepository.sendFeedback(prefix + feedback)
             }
         } else {
             Log.d("OutputVM", "Invalid state")
