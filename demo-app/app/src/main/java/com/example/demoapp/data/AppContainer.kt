@@ -19,7 +19,7 @@ class DefaultAppContainer(
 ): AppContainer {
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:5000/") // Use 10.0.2.2 for localhost in Android emulator
+        .baseUrl("http://192.168.8.224:5000/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     val api = retrofit.create(ApiService::class.java)
@@ -31,7 +31,7 @@ class DefaultAppContainer(
     val fieldNames = "title, incident_type, date_time, location, cause, issue, resolution"
 
     val modularInference: ModularSummarizer by lazy {
-        ModularSummarizerInstance(moduleName, fieldNames, context, modelPath, maxTopK = 10, maxTokens = 256)
+        ModularSummarizerInstance(moduleName, fieldNames, context, modelPath, maxTopK = 40, maxTokens = 256)
     }
 
     override val modelManager: ModelManager by lazy {

@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -17,6 +18,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -42,9 +44,17 @@ fun MainAppTopBar(
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
-        title = { Text(currentScreen.title) },
-        colors = TopAppBarDefaults.mediumTopAppBarColors(),
-        modifier = modifier.fillMaxWidth(),
+        title = {
+            Text(
+                text = currentScreen.title,
+                style = MaterialTheme.typography.titleLarge
+            )
+        },
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = Pink40,
+            titleContentColor = MaterialTheme.colorScheme.onPrimary
+        ),
+        modifier = modifier.fillMaxWidth()
     )
 }
 
@@ -54,16 +64,19 @@ fun MainAppBottomBar(
     modifier: Modifier = Modifier,
 ) {
     BottomAppBar(
-        containerColor = FooterBar
+        containerColor = FooterBar,
+        tonalElevation = 4.dp
     ) {
         Row(
-            horizontalArrangement = Arrangement.SpaceAround ,
-            modifier = modifier.fillMaxWidth()
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         ) {
             Button(
                 onClick = { navController.navigate(Screen.Input.name) }
             ) {
-                Text("Input Text")
+                Text("Input")
             }
             Button(
                 onClick = { navController.navigate(Screen.Output.name) }
