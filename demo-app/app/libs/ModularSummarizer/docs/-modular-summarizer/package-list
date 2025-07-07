@@ -1,0 +1,40 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.example.modularsummarizer////PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/index.html
+$dokka.location:com.example.modularsummarizer/DefaultLLMWrapper///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-default-l-l-m-wrapper/index.html
+$dokka.location:com.example.modularsummarizer/DefaultLLMWrapper/DefaultLLMWrapper/#android.content.Context#kotlin.String#kotlin.Int#kotlin.Int/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-default-l-l-m-wrapper/-default-l-l-m-wrapper.html
+$dokka.location:com.example.modularsummarizer/DefaultLLMWrapper/generateInference/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-default-l-l-m-wrapper/generate-inference.html
+$dokka.location:com.example.modularsummarizer/DefaultLLMWrapper/llmInference/#/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-default-l-l-m-wrapper/llm-inference.html
+$dokka.location:com.example.modularsummarizer/DefaultLLMWrapper/taskOptions/#/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-default-l-l-m-wrapper/task-options.html
+$dokka.location:com.example.modularsummarizer/Formatter///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-formatter/index.html
+$dokka.location:com.example.modularsummarizer/Formatter/formatInput/#com.example.modularsummarizer.Module#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-formatter/format-input.html
+$dokka.location:com.example.modularsummarizer/Formatter/formatOutputToJsonString/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-formatter/format-output-to-json-string.html
+$dokka.location:com.example.modularsummarizer/LLMWrapper///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-l-l-m-wrapper/index.html
+$dokka.location:com.example.modularsummarizer/LLMWrapper/generateInference/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-l-l-m-wrapper/generate-inference.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/index.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/generateFormattedOutput/#kotlin.String#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/generate-formatted-output.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/generateRawOutput/#kotlin.String#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/generate-raw-output.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/setFieldNames/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/set-field-names.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/setMaxTokens/#kotlin.Int/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/set-max-tokens.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/setMaxTopK/#kotlin.Int/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/set-max-top-k.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/setModelPath/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/set-model-path.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizer/setModuleName/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer/set-module-name.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/index.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/ModularSummarizerInstance/#kotlin.String#kotlin.String#android.content.Context#kotlin.String#kotlin.Int#kotlin.Int/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/-modular-summarizer-instance.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/generateFormattedOutput/#kotlin.String#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/generate-formatted-output.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/generateRawOutput/#kotlin.String#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/generate-raw-output.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/setFieldNames/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/set-field-names.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/setMaxTokens/#kotlin.Int/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/set-max-tokens.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/setMaxTopK/#kotlin.Int/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/set-max-top-k.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/setModelPath/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/set-model-path.html
+$dokka.location:com.example.modularsummarizer/ModularSummarizerInstance/setModuleName/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-modular-summarizer-instance/set-module-name.html
+$dokka.location:com.example.modularsummarizer/Module///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-module/index.html
+$dokka.location:com.example.modularsummarizer/Module/Module/#kotlin.String#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-module/-module.html
+$dokka.location:com.example.modularsummarizer/Module/fieldNames/#/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-module/field-names.html
+$dokka.location:com.example.modularsummarizer/Module/fieldNamesLiteral/#/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-module/field-names-literal.html
+$dokka.location:com.example.modularsummarizer/Module/moduleName/#/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-module/module-name.html
+$dokka.location:com.example.modularsummarizer/Parser///PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-parser/index.html
+$dokka.location:com.example.modularsummarizer/Parser/parseFields/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-parser/parse-fields.html
+$dokka.location:com.example.modularsummarizer/Parser/parseJsonToFields/#kotlin.String/PointingToDeclaration/-modular-summarizer/com.example.modularsummarizer/-parser/parse-json-to-fields.html
+com.example.modularsummarizer
+
