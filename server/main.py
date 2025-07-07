@@ -67,6 +67,8 @@ def check_status():
 
 @app.route("/feedback", methods=["POST"])
 def upload_feedback():
+    global job_id
+
     data = request.get_json()
     if not isinstance(data, dict):
         return jsonify({"error": "Expected a JSON object"}), 400
@@ -83,7 +85,7 @@ def upload_feedback():
         job_id = job_id + 1
         return jsonify({"status": "training", "job_id": current_job_id}), 200
     else:
-        return jsonify({"status": "stored", "job_id": ""}), 200
+        return jsonify({"status": "stored"}), 200
     
 @app.route("/model/download", methods=["GET"])
 def download_model():
