@@ -15,10 +15,10 @@ services:
       - "5000:5000"
     volumes:
       - type: bind
-        source: ./server/data  # path to directory to store dataset files and task files
+        source: ./server/data  # path to directory to store dataset files
         target: /app/data
       - type: bind
-        source: ./server/out
+        source: ./server/out  # path to directory to store output model task files
         target: /app/out
     deploy:
       resources:
