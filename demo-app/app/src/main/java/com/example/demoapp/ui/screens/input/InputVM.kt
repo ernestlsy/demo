@@ -51,6 +51,10 @@ class InputViewModel(
         }
     }
 
+    fun updateModule(moduleName: String, fieldNamesLiteral: String) {
+        mainRepository.updateModule(moduleName, fieldNamesLiteral)
+    }
+
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

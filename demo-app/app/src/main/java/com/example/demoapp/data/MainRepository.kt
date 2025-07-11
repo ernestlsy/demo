@@ -40,6 +40,10 @@ class MainRepository(
         _modelState.value = newState
     }
 
+    fun updateModule(moduleName: String, fieldNamesLiteral: String) {
+        modelManager.updateModule(moduleName, fieldNamesLiteral)
+    }
+
     override fun generateSummary(input: String) {
         setState(ModelState.Loading)
         val summary: Fields = modelManager.summarize(input)

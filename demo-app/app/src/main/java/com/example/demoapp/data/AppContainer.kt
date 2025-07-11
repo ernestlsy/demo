@@ -28,7 +28,8 @@ class DefaultAppContainer(
     val modelPath = model.absolutePath
 
     val moduleName = "Incident Report"
-    val fieldNames = "title, incident_type, date_time, location, cause, issue, resolution"
+//    val fieldNames = "title, incident_type, date_time, location, cause, issue, resolution"
+    val fieldNames = "date_time, location, issue, resolution"
 
     val modularInference: ModularSummarizer by lazy {
         ModularSummarizerInstance(moduleName, fieldNames, context, modelPath, maxTopK = 40, maxTokens = 256)

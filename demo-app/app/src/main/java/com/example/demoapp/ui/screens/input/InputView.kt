@@ -18,11 +18,15 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.demoapp.ui.Screen
+import com.example.demoapp.ui.components.ConfigPopup
 
 @Composable
 fun InputScreen(
@@ -32,6 +36,11 @@ fun InputScreen(
 ) {
     val uiState: InputState by viewModel.uiState.collectAsState()
 
+    var showDialog by remember { mutableStateOf(false) }
+    fun setShowDialog(boolean: Boolean) {
+        showDialog = boolean
+    }
+
     Box(
         modifier = modifier
             .fillMaxHeight()
@@ -39,8 +48,18 @@ fun InputScreen(
             .imePadding(),
         contentAlignment = Alignment.Center
     ) {
+        Button(
+            onClick = { showDialog = true },
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(16.dp)
+        ) {
+            Text("Edit Config")
+        }
+
         Column(
             modifier = Modifier
+                .align(Alignment.Center)
                 .padding(vertical = 10.dp)
                 .heightIn(max = 500.dp)
                 .fillMaxWidth(fraction = 0.9f)
@@ -67,6 +86,13 @@ fun InputScreen(
             ) {
                 Text("Generate Summary")
             }
+        }
+
+        if (showDialog) {
+            ConfigPopup(
+                { boolean -> setShowDialog(boolean) },
+                { moduleName, fieldNamesLiteral -> viewModel.updateModule(moduleName, fieldNamesLiteral) }
+            )
         }
     }
 }
